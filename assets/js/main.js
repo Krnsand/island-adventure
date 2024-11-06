@@ -21,22 +21,27 @@ const scenes = [
     text: "Welcome to the virtual island adventure! Click Start to begin exploring.",
     buttonText: "Start",
     isStart: true, // This marks it as the special "start scene"
+    image: "assets/images/beach?.jpg",
   },
   {
     text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You no one. You find a water bottle that must have washed ashore along with you. You know you need to find mer water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
     buttonText: "Enter the Jungle",
+    image: "assets/images/beach.jpg",
+  },
+  {
+    text: "You are standing on a sunny beach. The waves gently lap at the shore.",
+    buttonText: "Go to the forest",
+    image: "assets/images/monkey.jpg",
   },
   {
     text: "You walk into a lush forest filled with tropical plants and chirping birds.",
-    buttonText: "Ask the monkey",
+    buttonText: "Visit the pond",
+    image: "assets/images/fresh-water.jpg",
   },
   {
     text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
     buttonText: "Return to the beach",
-  },
-  {
-    text: "You enter a magical cave with glowing crystals and a calm pool.",
-    buttonText: "Return to the forest",
+    image: "assets/images/parrot.jpg",
   },
 ];
 
@@ -44,6 +49,14 @@ function updateScene() {
   const scene = scenes[currentScene];
   document.getElementById("sceneText").innerText = scene.text;
   document.getElementById("actionButton").innerText = scene.buttonText;
+
+  const sceneImage = document.getElementById("sceneImage");
+  if (scene.image) {
+    sceneImage.src = scene.image;
+    sceneImage.style.display = "block"; // Show the image
+  } else {
+    sceneImage.style.display = "none"; // Hide the image if there's no image URL
+  }
 }
 
 function handleButtonClick() {
