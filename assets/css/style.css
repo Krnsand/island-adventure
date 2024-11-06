@@ -3,6 +3,7 @@ body {
     
 }
 
-#text {
+#sceneText {
     color: white;
+    gap: 1rem;
 }
