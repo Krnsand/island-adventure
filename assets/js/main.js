@@ -25,14 +25,14 @@ const scenes = [
   },
   {
     text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You no one. You find a water bottle that must have washed ashore along with you. You know you need to find mer water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
-    buttonText1: "Go to the forest",
+    buttonText1: "Enter Jungle",
     image: "assets/images/beach.jpg",
   },
   {
-    text: "You are standing on a sunny beach. The waves gently lap at the shore.",
-    buttonText1: "Take the left path",
-    buttonText2: "Take the right path", // Second option
-    image: "assets/images/monkey.jpg",
+    text: "You are walking in the jungle in search for water and food and you are met with a huuuuuge tree! You will have to go around it. Do you take the right way around? Or the left?",
+    buttonText1: "Take the right path",
+    buttonText2: "Take the left path", // Second option
+    image: "assets/images/jungle.jpg",
   },
   {
     text: "You walk into a lush forest filled with tropical plants and chirping birds.",
