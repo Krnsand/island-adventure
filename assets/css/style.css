@@ -9,6 +9,10 @@ body {
     
 }
 
+header p {
+    color: white;
+}
+
 main {
     margin: 1rem 3rem
 }
@@ -17,6 +21,8 @@ main {
     color: white;
     gap: 1rem;
 }
+
+
 
 footer {
     color: white;
