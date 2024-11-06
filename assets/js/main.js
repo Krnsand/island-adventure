@@ -19,59 +19,78 @@ let currentScene = 0;
 const scenes = [
   {
     text: "Welcome to the virtual island adventure! Click Start to begin exploring.",
-    buttonText: "Start",
+    buttonText1: "Start",
     isStart: true, // This marks it as the special "start scene"
-    image: "assets/images/beach?.jpg",
+    image: "assets/images/start-beach.jpg",
   },
   {
     text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You no one. You find a water bottle that must have washed ashore along with you. You know you need to find mer water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
-    buttonText: "Enter the Jungle",
+    buttonText1: "Go to the forest",
     image: "assets/images/beach.jpg",
   },
   {
     text: "You are standing on a sunny beach. The waves gently lap at the shore.",
-    buttonText: "Go to the forest",
+    buttonText1: "Take the left path",
+    buttonText2: "Take the right path", // Second option
     image: "assets/images/monkey.jpg",
   },
   {
     text: "You walk into a lush forest filled with tropical plants and chirping birds.",
-    buttonText: "Visit the pond",
+    buttonText1: "Return to the beach",
     image: "assets/images/fresh-water.jpg",
   },
   {
     text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
-    buttonText: "Return to the beach",
+    buttonText1: "Return to the beach",
     image: "assets/images/parrot.jpg",
   },
 ];
 
 function updateScene() {
   const scene = scenes[currentScene];
-  document.getElementById("sceneText").innerText = scene.text;
-  document.getElementById("actionButton").innerText = scene.buttonText;
 
-  const sceneImage = document.getElementById("sceneImage");
-  if (scene.image) {
-    sceneImage.src = scene.image;
-    sceneImage.style.display = "block"; // Show the image
+  // Update scene text and image
+  document.getElementById("sceneText").innerText = scene.text;
+  document.getElementById("sceneImage").src = scene.image || "";
+  document.getElementById("sceneImage").style.display = scene.image
+    ? "block"
+    : "none";
+
+  // Update button 1 (primary button)
+  document.getElementById("actionButton1").innerText = scene.buttonText1;
+
+  // Update button 2 (secondary button) if it exists
+  if (scene.buttonText2) {
+    document.getElementById("actionButton2").innerText = scene.buttonText2;
+    document.getElementById("actionButton2").style.display = "inline-block"; // Show second button
   } else {
-    sceneImage.style.display = "none"; // Hide the image if there's no image URL
+    document.getElementById("actionButton2").style.display = "none"; // Hide second button if not needed
   }
 }
 
-function handleButtonClick() {
-  if (scenes[currentScene].isStart) {
+function handleButtonClick(buttonNumber) {
+  const scene = scenes[currentScene];
+
+  if (scene.isStart) {
+    // Start scene logic
     currentScene = 1;
-  } else {
+  } else if (buttonNumber === 1) {
+    // Logic for primary button
     currentScene = (currentScene + 1) % scenes.length;
+  } else if (buttonNumber === 2 && scene.buttonText2) {
+    // Logic for secondary button
+    currentScene = (currentScene + 2) % scenes.length; // Example: skips to a different scene
   }
 
   updateScene();
 }
 
-document
-  .getElementById("actionButton")
-  .addEventListener("click", handleButtonClick);
+document.getElementById("actionButton1").addEventListener("click", function () {
+  handleButtonClick(1);
+});
+document.getElementById("actionButton2").addEventListener("click", function () {
+  handleButtonClick(2);
+});
 
 updateScene();
 
