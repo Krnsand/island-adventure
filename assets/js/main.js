@@ -1,48 +1,143 @@
 window.addEventListener("DOMContentLoaded", main);
 
-// Skriv funtions för knapparna och texten här inne, koppla id så som i övningen vi gjorde
-
 function main() {
-  //   loadStartingScene();
   updateScene();
   handleButtonClick();
 }
-
-// function loadStartingScene() {
-//   //...  onclick.
-// }
 
 // Initial scene index to track where we are in the story
 let currentScene = 0;
 
 // Scenes array with different scenes, each with text and button options
 const scenes = [
+  // 0
   {
-    text: "Welcome to the virtual island adventure! Click Start to begin exploring.",
+    text: "Welcome to the virtual Island Adventure! Click Start to begin your adventure!",
     buttonText1: "Start",
-    isStart: true, // This marks it as the special "start scene"
+    isStart: true,
+    nextSceneButton1: 1,
     image: "assets/images/start-beach.jpg",
   },
+  // 1
   {
-    text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You no one. You find a water bottle that must have washed ashore along with you. You know you need to find mer water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
+    text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
     buttonText1: "Enter Jungle",
+    buttonText2: "Stay on the Beach",
+    nextSceneButton1: 4,
+    nextSceneButton2: 2,
     image: "assets/images/beach.jpg",
   },
+  // 2
   {
-    text: "You are walking in the jungle in search for water and food and you are met with a huuuuuge tree! You will have to go around it. Do you take the right way around? Or the left?",
+    text: "You decide to sit on the beach and hope to be rescued soon....",
+    buttonText1: "Hope for the best...",
+    nextSceneButton1: 3,
+    image: "assets/images/sit.jpg",
+  },
+  // 3
+  {
+    text: "Oh No! You get stung by something venomous in the sand!!!! You died.....",
+    buttonText1: "Play Again?",
+    buttonText2: "No More please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 0,
+    image: "assets/images/sand.jpg",
+  },
+  // 4
+  {
+    text: "You are walking in the jungle in search for water and food and you are met with a huuuuuge tree! You will have to go around it. Do you take the right path around? Or the left?",
     buttonText1: "Take the right path",
-    buttonText2: "Take the left path", // Second option
+    buttonText2: "Take the left path",
+    nextSceneButton1: 5,
+    nextSceneButton2: 6,
     image: "assets/images/jungle.jpg",
   },
+  // 5
   {
-    text: "You walk into a lush forest filled with tropical plants and chirping birds.",
+    text: "OH NO! You come face to face with a scary looking snake! You died.....",
     buttonText1: "Return to the beach",
+    nextSceneButton1: 0,
+    image: "assets/images/snake.jpg",
+  },
+  // 6
+  {
+    text: "You see a friendly looking monkey sitting in a tree and decide to talk to it. Who knows, it might be able to talk!",
+    buttonText1: "Ask monkey for directions",
+    buttonText2: "Monkeys can't talk, I'll find my own way",
+    nextSceneButton1: 7,
+    nextSceneButton2: 6,
+    image: "assets/images/monkey1.jpg",
+  },
+  // 7
+  {
+    text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food as well.....",
+    buttonText1: "Look for food",
+    buttonText2: "Go back to the beach",
+    nextSceneButton1: 8,
+    nextSceneButton2: 2,
     image: "assets/images/fresh-water.jpg",
   },
+  // 8
+  {
+    text: "You see a two pretty parrots and think about asking them where you can find some food",
+    buttonText1: "Food where?",
+    buttonText2: "I'll just eat the parrot...",
+    nextSceneButton1: 9,
+    nextSceneButton2: 10,
+    image: "assets/images/parrot-right.jpg",
+  },
+  // 9
+  // {
+  //   text: "You see a two pretty parrots and think about asking them where you can find some food",
+  //   buttonText1: "Go Right",
+  //   buttonText2: "I'll just eat the parrot...",
+  //   nextSceneButton1: 9,
+  //   nextSceneButton2: 10,
+  //   image: "assets/images/parrot.jpg",
+  // },
+  // 10
+  {
+    text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
+    buttonText1: "start to climb",
+    buttonText2: "try to hit or shake tree",
+    nextSceneButton1: 9,
+    nextSceneButton2: 10,
+    image: "assets/images/coconuts.jpg",
+  },
+  // 11
   {
     text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
-    buttonText1: "Return to the beach",
-    image: "assets/images/parrot.jpg",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/start-beach.jpg",
+  },
+  // 12
+  {
+    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/start-beach.jpg",
+  },
+  // 13
+  {
+    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/start-beach.jpg",
+  },
+  // 14
+  {
+    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/start-beach.jpg",
+  },
+  // 15
+  {
+    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/start-beach.jpg",
   },
 ];
 
@@ -71,15 +166,10 @@ function updateScene() {
 function handleButtonClick(buttonNumber) {
   const scene = scenes[currentScene];
 
-  if (scene.isStart) {
-    // Start scene logic
-    currentScene = 1;
-  } else if (buttonNumber === 1) {
-    // Logic for primary button
-    currentScene = (currentScene + 1) % scenes.length;
-  } else if (buttonNumber === 2 && scene.buttonText2) {
-    // Logic for secondary button
-    currentScene = (currentScene + 2) % scenes.length; // Example: skips to a different scene
+  if (buttonNumber === 1) {
+    currentScene = scene.nextSceneButton1; // Go to the scene specified for Button 1
+  } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
+    currentScene = scene.nextSceneButton2; // Go to the scene specified for Button 2
   }
 
   updateScene();

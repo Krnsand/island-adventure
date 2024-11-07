@@ -1,9 +1,6 @@
 window.addEventListener("DOMContentLoaded", main);
 
-
-
 // Skriv funtions för knapparna och texten här inne, koppla id så som i övningen vi gjorde
-
 
 function main() {
   loadStartingScene();
@@ -86,13 +83,12 @@ function loadPickUpShell() {
 function loadPutShellDown() {
   //...
 }
-function loadSeBoat() {
+function loadSeeBoat() {
   //...
 }
 function loadGetRescued() {
   //...
 }
-
 
 /*Kod innan function loadSceneContent och loadLeftButton och loadRightButton:
 function scene2WatchingTv() {
