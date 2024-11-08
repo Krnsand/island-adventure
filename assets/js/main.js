@@ -5,6 +5,12 @@ function main() {
   handleButtonClick();
 }
 
+// let pickedUpItems = ["bird", "pen", "key"];
+// const index = pickedUpItems.indexOf("pen");
+// pickedUpItems.splice(index, 1);
+
+// splice = välja items i arrayer via index nummer
+
 // Initial scene index to track where we are in the story
 let currentScene = 0;
 
@@ -20,7 +26,7 @@ const scenes = [
   },
   // 1
   {
-    text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
+    text: "You have just washed ashore on a beach somewhere out in the ocean.\n\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
     buttonText1: "Enter Jungle",
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 4,
@@ -39,8 +45,10 @@ const scenes = [
     text: "Oh No! You get stung by something venomous in the sand!!!! You died.....",
     buttonText1: "Play Again?",
     buttonText2: "No More please....",
+    buttonText3: "Test",
     nextSceneButton1: 0,
     nextSceneButton2: 0,
+    nextSceneButton3: 5,
     image: "assets/images/sand.jpg",
   },
   // 4
@@ -154,12 +162,22 @@ function updateScene() {
   // Update button 1 (primary button)
   document.getElementById("actionButton1").innerText = scene.buttonText1;
 
-  // Update button 2 (secondary button) if it exists
+  // Update Button 2 text and visibility
+  const button2 = document.getElementById("actionButton2");
   if (scene.buttonText2) {
-    document.getElementById("actionButton2").innerText = scene.buttonText2;
-    document.getElementById("actionButton2").style.display = "inline-block"; // Show second button
+    button2.innerText = scene.buttonText2;
+    button2.style.display = "inline-block";
   } else {
-    document.getElementById("actionButton2").style.display = "none"; // Hide second button if not needed
+    button2.style.display = "none";
+  }
+
+  // Update Button 3 text and visibility
+  const button3 = document.getElementById("actionButton3");
+  if (scene.buttonText3) {
+    button3.innerText = scene.buttonText3;
+    button3.style.display = "inline-block";
+  } else {
+    button3.style.display = "none"; // Hide button if not needed
   }
 }
 
@@ -170,8 +188,9 @@ function handleButtonClick(buttonNumber) {
     currentScene = scene.nextSceneButton1; // Go to the scene specified for Button 1
   } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
     currentScene = scene.nextSceneButton2; // Go to the scene specified for Button 2
+  } else if (buttonNumber === 3 && scene.nextSceneButton3 !== undefined) {
+    currentScene = scene.nextSceneButton2; // Go to the scene specified for Button 3
   }
-
   updateScene();
 }
 
@@ -180,6 +199,9 @@ document.getElementById("actionButton1").addEventListener("click", function () {
 });
 document.getElementById("actionButton2").addEventListener("click", function () {
   handleButtonClick(2);
+});
+document.getElementById("actionButton3").addEventListener("click", function () {
+  handleButtonClick(3);
 });
 
 updateScene();
