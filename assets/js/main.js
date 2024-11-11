@@ -26,7 +26,7 @@ const scenes = [
   },
   // 1
   {
-    text: "You have just washed ashore on a beach somewhere out in the ocean.\n\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
+    text: "You have just washed ashore on a beach somewhere out in the ocean. \n\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
     buttonText1: "Enter Jungle",
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 4,
@@ -140,8 +140,17 @@ const scenes = [
   {
     text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you dead....",
     buttonText1: "Play again?",
+    buttonText2: "No more please....",
     nextSceneButton1: 0,
-    image: "assets/images/dead.jpg",
+    nextSceneButton2: 15,
+    image: "assets/images/cold.jpg",
+  },
+  // 15
+  {
+    text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/end.jpg",
   },
 ];
 
