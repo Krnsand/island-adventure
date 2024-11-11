@@ -42,13 +42,11 @@ const scenes = [
   },
   // 3
   {
-    text: "Oh No! You get stung by something venomous in the sand!!!! You died.....",
+    text: "OH NO! You get stung by something venomous in the sand!!!! You died.....",
     buttonText1: "Play Again?",
     buttonText2: "No More please....",
-    buttonText3: "Test",
     nextSceneButton1: 0,
     nextSceneButton2: 0,
-    nextSceneButton3: 5,
     image: "assets/images/sand.jpg",
   },
   // 4
@@ -62,8 +60,8 @@ const scenes = [
   },
   // 5
   {
-    text: "OH NO! You come face to face with a scary looking snake! You died.....",
-    buttonText1: "Return to the beach",
+    text: "OH NO! You come face to face with a scary looking snake! You try to scare it away but it bites instead. You died.....",
+    buttonText1: "Play again?",
     nextSceneButton1: 0,
     image: "assets/images/snake.jpg",
   },
@@ -78,74 +76,72 @@ const scenes = [
   },
   // 7
   {
-    text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food as well.....",
+    text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food and shelter as well.....",
     buttonText1: "Look for food",
-    buttonText2: "Go back to the beach",
+    buttonText2: "Shelter is more important right now",
     nextSceneButton1: 8,
     nextSceneButton2: 2,
     image: "assets/images/fresh-water.jpg",
   },
   // 8
   {
-    text: "You see a two pretty parrots and think about asking them where you can find some food",
-    buttonText1: "Food where?",
-    buttonText2: "I'll just eat the parrot...",
-    nextSceneButton1: 9,
-    nextSceneButton2: 10,
-    image: "assets/images/parrot-right.jpg",
+    text: "You see two pretty parrots and think about asking them where you can find some food",
+    buttonText1: "Parrot 1 says left",
+    buttonText2: "Parrot 2 says right",
+    buttonText3: "I'll just eat the parrots...",
+    nextSceneButton1: 0,
+    nextSceneButton2: 9,
+    nextSceneButton3: 10,
+    image: "assets/images/parrots.png",
   },
+
   // 9
-  // {
-  //   text: "You see a two pretty parrots and think about asking them where you can find some food",
-  //   buttonText1: "Go Right",
-  //   buttonText2: "I'll just eat the parrot...",
-  //   nextSceneButton1: 9,
-  //   nextSceneButton2: 10,
-  //   image: "assets/images/parrot.jpg",
-  // },
-  // 10
   {
     text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
-    buttonText1: "start to climb",
-    buttonText2: "try to hit or shake tree",
-    nextSceneButton1: 9,
-    nextSceneButton2: 10,
+    buttonText1: "Climb up and get them",
+    buttonText2: "Not risking a fall... look for shelter",
+    nextSceneButton1: 11,
+    nextSceneButton2: 0,
     image: "assets/images/coconuts.jpg",
+  },
+  // 10
+  {
+    text: "OH NO!! The parrots friends knows you want to eat them so they all take flight and attack you!!!! You died....",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/many-birds.jpg",
   },
   // 11
   {
-    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
-    buttonText1: "Play again?",
-    nextSceneButton1: 0,
-    image: "assets/images/start-beach.jpg",
+    text: "You now have food and water, time to look for shelter!",
+    buttonText1: "Head back to beach",
+    buttonText2: "Go back to waterfall",
+    nextSceneButton1: 12,
+    nextSceneButton2: 1,
+    image: "assets/images/jungle.jpg",
   },
   // 12
   {
-    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
-    buttonText1: "Play again?",
-    nextSceneButton1: 0,
-    image: "assets/images/start-beach.jpg",
+    text: "You found a hidden cave by the beach!! NICE!! You shall have shelter for the night!",
+    buttonText1: "Build a fire to stay warm",
+    buttonText2: "Not risking drawing too much attention at night....",
+    nextSceneButton1: 13,
+    nextSceneButton2: 14,
+    image: "assets/images/cave.jpg",
   },
   // 13
   {
-    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
     buttonText1: "Play again?",
     nextSceneButton1: 0,
-    image: "assets/images/start-beach.jpg",
+    image: "assets/images/ship.jpg",
   },
   // 14
   {
-    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
+    text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you dead....",
     buttonText1: "Play again?",
     nextSceneButton1: 0,
-    image: "assets/images/start-beach.jpg",
-  },
-  // 15
-  {
-    text: "You arrive at a calm pond, surrounded by lily pads and dragonflies.",
-    buttonText1: "Play again?",
-    nextSceneButton1: 0,
-    image: "assets/images/start-beach.jpg",
+    image: "assets/images/dead.jpg",
   },
 ];
 
@@ -185,12 +181,13 @@ function handleButtonClick(buttonNumber) {
   const scene = scenes[currentScene];
 
   if (buttonNumber === 1) {
-    currentScene = scene.nextSceneButton1; // Go to the scene specified for Button 1
+    currentScene = scene.nextSceneButton1;
   } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
-    currentScene = scene.nextSceneButton2; // Go to the scene specified for Button 2
+    currentScene = scene.nextSceneButton2;
   } else if (buttonNumber === 3 && scene.nextSceneButton3 !== undefined) {
-    currentScene = scene.nextSceneButton2; // Go to the scene specified for Button 3
+    currentScene = scene.nextSceneButton3; // Go to the scene specified for Button 3
   }
+
   updateScene();
 }
 
