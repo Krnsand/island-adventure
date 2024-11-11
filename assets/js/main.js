@@ -46,23 +46,25 @@ const scenes = [
     buttonText1: "Play Again?",
     buttonText2: "No More please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 0,
+    nextSceneButton2: 15,
     image: "assets/images/sand.jpg",
   },
   // 4
   {
-    text: "You are walking in the jungle in search for water and food and you are met with a huuuuuge tree! You will have to go around it. Do you take the right path around? Or the left?",
-    buttonText1: "Take the right path",
-    buttonText2: "Take the left path",
-    nextSceneButton1: 5,
-    nextSceneButton2: 6,
+    text: "You are walking in the jungle in search for water and food and you are met with a HUUUUUUGE tree! You will have to go around it. Do you take the right path around? Or the left?",
+    buttonText1: "Take the left path",
+    buttonText2: "Take the right path",
+    nextSceneButton1: 6,
+    nextSceneButton2: 5,
     image: "assets/images/jungle.jpg",
   },
   // 5
   {
-    text: "OH NO! You come face to face with a scary looking snake! You try to scare it away but it bites instead. You died.....",
+    text: "OH NO! You come face to face with a scary looking snake! You try to scare it away but it bites you instead. You died.....",
     buttonText1: "Play again?",
+    buttonText2: "No more please....",
     nextSceneButton1: 0,
+    nextSceneButton2: 15,
     image: "assets/images/snake.jpg",
   },
   // 6
@@ -71,7 +73,7 @@ const scenes = [
     buttonText1: "Ask monkey for directions",
     buttonText2: "Monkeys can't talk, I'll find my own way",
     nextSceneButton1: 7,
-    nextSceneButton2: 6,
+    nextSceneButton2: 16,
     image: "assets/images/monkey1.jpg",
   },
   // 7
@@ -80,7 +82,7 @@ const scenes = [
     buttonText1: "Look for food",
     buttonText2: "Shelter is more important right now",
     nextSceneButton1: 8,
-    nextSceneButton2: 2,
+    nextSceneButton2: 12,
     image: "assets/images/fresh-water.jpg",
   },
   // 8
@@ -89,7 +91,7 @@ const scenes = [
     buttonText1: "Parrot 1 says left",
     buttonText2: "Parrot 2 says right",
     buttonText3: "I'll just eat the parrots...",
-    nextSceneButton1: 0,
+    nextSceneButton1: 17,
     nextSceneButton2: 9,
     nextSceneButton3: 10,
     image: "assets/images/parrots.png",
@@ -101,23 +103,23 @@ const scenes = [
     buttonText1: "Climb up and get them",
     buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 11,
-    nextSceneButton2: 0,
+    nextSceneButton2: 12,
     image: "assets/images/coconuts.jpg",
   },
   // 10
   {
     text: "OH NO!! The parrots friends knows you want to eat them so they all take flight and attack you!!!! You died....",
     buttonText1: "Play again?",
+    buttonText2: "No more please....",
     nextSceneButton1: 0,
+    nextSceneButton2: 15,
     image: "assets/images/many-birds.jpg",
   },
   // 11
   {
     text: "You now have food and water, time to look for shelter!",
     buttonText1: "Head back to beach",
-    buttonText2: "Go back to waterfall",
     nextSceneButton1: 12,
-    nextSceneButton2: 1,
     image: "assets/images/jungle.jpg",
   },
   // 12
@@ -148,10 +150,42 @@ const scenes = [
   // 15
   {
     text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
-    buttonText1: "Play again?",
+    buttonText1: "You sure you don't want to play again?",
     nextSceneButton1: 0,
     image: "assets/images/end.jpg",
   },
+  // 16
+  {
+    text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you dead..",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 15,
+    image: "assets/images/gorilla.jpg",
+  },
+  // 17
+  {
+    text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
+    buttonText1: "Climb up and get them",
+    buttonText2: "Not risking a fall... look for shelter",
+    nextSceneButton1: 11,
+    nextSceneButton2: 12,
+    image: "assets/images/coconuts2.jpg",
+  },
+  // // 18
+  // {
+  //   text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
+  //   buttonText1: "Play again?",
+  //   nextSceneButton1: 0,
+  //   image: "assets/images/end.jpg",
+  // },
+  // // 19
+  // {
+  //   text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
+  //   buttonText1: "Play again?",
+  //   nextSceneButton1: 0,
+  //   image: "assets/images/end.jpg",
+  // },
 ];
 
 function updateScene() {
