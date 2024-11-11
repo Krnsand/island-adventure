@@ -26,7 +26,7 @@ const scenes = [
   },
   // 1
   {
-    text: "You have just washed ashore on a beach somewhere out in the ocean. \n\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
+    text: "You have just washed ashore on a beach somewhere out in the ocean.\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
     buttonText1: "Enter Jungle",
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 4,
@@ -95,6 +95,7 @@ const scenes = [
     nextSceneButton2: 9,
     nextSceneButton3: 10,
     image: "assets/images/parrots.png",
+    size: { width: "100%", height: "auto" }, // Custom size for this image
   },
 
   // 9
@@ -197,6 +198,15 @@ function updateScene() {
   document.getElementById("sceneImage").style.display = scene.image
     ? "block"
     : "none";
+
+  // Apply custom size if it exists, otherwise default size
+  if (scene.size) {
+    sceneImage.style.width = scene.size.width;
+    sceneImage.style.height = scene.size.height;
+  } else {
+    sceneImage.style.width = "100%"; // or any default size you want
+    sceneImage.style.height = "auto";
+  }
 
   // Update button 1 (primary button)
   document.getElementById("actionButton1").innerText = scene.buttonText1;

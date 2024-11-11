@@ -1,30 +1,76 @@
 body {
-    height: 100%;
-    background-color: rgb(8, 90, 14);
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    
-}
-
-header p {
+    justify-content: center;
+    /* gap: 1rem; */
+  }
+  
+  header h1 {
     color: white;
-}
-
-main {
-    margin: 1rem 3rem
-}
+    font-family: 'Sour gummy', sans-serif;
+  }
+  
+  .sceneContainer {
+    /*width: 100%;                      Adjust to desired container width */
+    max-width: 900px;              
+    height: 700px;                  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.629); 
+    border-radius: 8px;             
+    overflow: hidden;               
+  }
+  
+  #sceneImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;              
+    display: block;                 
+  }
+  
 
 #sceneText {
-    color: white;
-    gap: 1rem;
+    color: rgb(13, 77, 17);
+    text-shadow: 1px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 20px; 
 }
+
+#buttonContainer {
+    display: flex;                /* Use Flexbox */
+    justify-content: center;       /* Center buttons horizontally */
+    gap: 10px;                     /* Space between buttons */
+    margin-top: 20px;              /* Space above the buttons */
+  }
+  
+  #buttonContainer button {
+    padding: 10px 20px;            /* Optional: Button padding for a nice look */
+    background-color: rgb(13, 77, 17);
+    color: aliceblue;
+    border-radius: 8px; 
+  }
+  
 
 
 
 footer {
     color: white;
 }
+
+
+  
 

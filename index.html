@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Island Adventure</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -11,35 +12,39 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
     <header>
-      <p>
+      <h1>
         <i class="fa-brands fa-pagelines"></i> Welcome to Island Adventure
         <i class="fa-brands fa-pagelines"></i>
-      </p>
+      </h1>
     </header>
     <main>
-      <div id="sceneText"></div>
+      <div class="sceneContainer">
+        <div id="sceneText"></div>
 
-      <img
-        id="sceneImage"
-        src=""
-        alt="Scene image"
-        style="width: 100%; max-height: 400px; display: none"
-      />
-      <button id="actionButton1"></button>
-
-      <button id="actionButton2" style="display: none"></button>
-      <button id="actionButton3" style="display: none"></button>
+        <img id="sceneImage" src="" alt="Scene image" style="display: none" />
+        <div id="buttonContainer">
+          <button id="actionButton1"></button>
+          <button id="actionButton2" style="display: none"></button>
+          <button id="actionButton3" style="display: none"></button>
+        </div>
+      </div>
       <!-- <button id="pickupButton" style="display: none">Pick up items</button>
-      <button onclick="dropItemPrompt()" style="display: none">
-        Drop an item
-      </button> 
-        
-      <div id="inventory">Inventory:</div> -->
+    <button onclick="dropItemPrompt()" style="display: none">
+      Drop an item
+    </button> 
+      
+    <div id="inventory">Inventory:</div> -->
     </main>
     <footer>
       <p>&copy; 2024 Karin Sandin</p>
