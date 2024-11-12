@@ -95,7 +95,7 @@ const scenes = [
     nextSceneButton2: 9,
     nextSceneButton3: 10,
     image: "assets/images/parrots.png",
-    size: { width: "100%", height: "auto" }, // Custom size for this image
+    size: { width: "100%", height: "auto" },
   },
 
   // 9
