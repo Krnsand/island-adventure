@@ -108,9 +108,9 @@ const scenes = [
     buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 11,
     nextSceneButton2: 12,
-    items: ["coconut"], // Item to pick up
+    items: ["coconut"],
     image: "assets/images/coconuts.jpg",
-    allowPutDown: true, // Allow putting down items here
+    allowPutDown: true,
   },
   // 10
   {
@@ -323,42 +323,3 @@ document.getElementById("actionButton3").addEventListener("click", function () {
 });
 
 updateScene();
-
-// function loadButton1(toScene, text) {
-//   const buttonOne = document.getElementById("button1");
-//   button1.onclick = toScene;
-//   button1.textContent = text
-// }
-
-/*Kod innan function loadSceneContent och loadLeftButton och loadRightButton:
-function scene2WatchingTv() {
- 
-    function loadSceneContent(img, headline, paragraph) {
-    const image = document.getElementById("background-img");
-    image.src = img;
- 
-    const h2 = document.getElementById("scene-headline");
-    h2.textContent = headline;
- 
-    const p = document.getElementById("scene-paragraph");
-    p.textContent = paragraph;
- 
-    const buttonLeft = document.getElementById("buttonLeft");
-    buttonLeft.onclick = function enterScene4Collapse() {
-        scene4Collapse();
-    };
- 
-    const buttonRight = document.getElementById("buttonRight");
-    buttonRight.onclick = function enterScene3Rabbithole() {
-        scene3Rabbithole();
-    };
-
-
-
-    function loadLeftButton(toScene, text) {
-    const buttonLeft = document.getElementById("buttonLeft");
-    buttonLeft.onclick = toScene;
-    buttonLeft.textContent = text
-}
- 
-    */
