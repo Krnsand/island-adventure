@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", main);
 function main() {
   updateScene();
   handleButtonClick();
+  updateInventoryDisplay();
 }
 
 // let pickedUpItems = ["bird", "pen", "key"];
@@ -13,6 +14,7 @@ function main() {
 
 // Initial scene index to track where we are in the story
 let currentScene = 0;
+let inventory = [];
 
 // Scenes array with different scenes, each with text and button options
 const scenes = [
@@ -31,6 +33,7 @@ const scenes = [
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 4,
     nextSceneButton2: 2,
+    items: ["water bottle"], // Item to pick up
     image: "assets/images/beach.jpg",
   },
   // 2
@@ -105,7 +108,9 @@ const scenes = [
     buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 11,
     nextSceneButton2: 12,
+    items: ["coconut"], // Item to pick up
     image: "assets/images/coconuts.jpg",
+    allowPutDown: true, // Allow putting down items here
   },
   // 10
   {
@@ -228,6 +233,69 @@ function updateScene() {
   } else {
     button3.style.display = "none"; // Hide button if not needed
   }
+
+  // Show "Pick up" button only if items are available in the scene
+  const pickupButton = document.getElementById("pickupButton");
+  if (scene.items && scene.items.length > 0) {
+    pickupButton.style.display = "inline-block";
+    pickupButton.onclick = function () {
+      scene.items.forEach((item) => pickUpItem(item));
+      scene.items = []; // Clear items in scene after picking up
+      saveGameState();
+      updateScene(); // Refresh to hide "Pick up" button
+    };
+  } else {
+    pickupButton.style.display = "none";
+  }
+
+  // Show "Put down" button only if the scene allows it and there are items in the inventory
+  const putDownButton = document.getElementById("putDownButton");
+  if (scene.allowPutDown && inventory.length > 0) {
+    putDownButton.style.display = "inline-block";
+    putDownButton.onclick = function () {
+      const itemToDrop = prompt(
+        `Which item would you like to put down? Your inventory: ${inventory.join(
+          ", "
+        )}`
+      );
+      if (itemToDrop && inventory.includes(itemToDrop)) {
+        dropItem(itemToDrop);
+        scene.items.push(itemToDrop); // Return item to the scene
+        saveGameState();
+        updateScene(); // Refresh to show changes
+      } else {
+        alert("Item not found in inventory.");
+      }
+    };
+  } else {
+    putDownButton.style.display = "none";
+  }
+
+  // Update inventory display after changes
+  updateInventoryDisplay();
+}
+
+// Pick up an item and add to inventory
+function pickUpItem(item) {
+  inventory.push(item);
+  updateInventoryDisplay(); // Refresh inventory display immediately
+}
+
+// Drop an item and remove from inventory
+function dropItem(item) {
+  const itemIndex = inventory.indexOf(item);
+  if (itemIndex > -1) {
+    inventory.splice(itemIndex, 1); // Remove item from inventory
+  }
+  updateInventoryDisplay(); // Refresh inventory display immediately
+}
+
+// Display inventory items
+function updateInventoryDisplay() {
+  const inventoryDiv = document.getElementById("inventory");
+  inventoryDiv.textContent = `Inventory: ${
+    inventory.length > 0 ? inventory.join(", ") : "(empty)"
+  }`;
 }
 
 function handleButtonClick(buttonNumber) {
