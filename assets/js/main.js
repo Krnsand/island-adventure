@@ -6,8 +6,6 @@ function main() {
   loadGameState();
   removeGameState();
   updateScene();
-  pickUpItem();
-  dropItem();
   handleButtonClick();
   updateInventoryDisplay();
 }
@@ -146,8 +144,6 @@ const scenes = [
     nextSceneButton1: 14,
     nextSceneButton2: 16,
     image: "assets/images/climb.jpg",
-    // allowPutDown: true,
-    showPutDownButton: false, // Do not show the "Put Down" button here
   },
   // 14
   {
@@ -158,8 +154,7 @@ const scenes = [
     nextSceneButton2: 17,
     items: ["coconut"],
     image: "assets/images/coconuts.jpg",
-    // allowPutDown: true,
-    showPutDownButton: false, // Do not show the "Put Down" button here
+    showPutDownButton: false,
   },
   // 15
   {
@@ -195,7 +190,7 @@ const scenes = [
     buttonText2: "I'll just eat the crab....",
     nextSceneButton1: 20,
     nextSceneButton2: 21,
-    image: "assets/images/cave.jpg",
+    image: "assets/images/cave1.jpg",
   },
   // 19
   {
@@ -214,7 +209,7 @@ const scenes = [
     nextSceneButton1: 22,
     nextSceneButton2: 23,
     image: "assets/images/crab.jpg",
-    showPutDownButton: true, // Show the "Put Down" button in this scene
+    showPutDownButton: true,
   },
   // 21
   {
@@ -223,7 +218,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/mud.png",
+    image: "assets/images/crab-eat.png",
   },
   // 22
   {
@@ -241,7 +236,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/cave.jpg",
+    image: "assets/images/crab-eat.jpg",
   },
   // 24
   {
