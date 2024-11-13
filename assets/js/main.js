@@ -22,22 +22,31 @@ const scenes = [
   },
   // 1
   {
-    text: "You have just washed ashore on a beach somewhere out in the ocean.\n You look around to see if you can find anyone else here. You see no one. You find a water bottle that must have washed ashore along with you. It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you look ahead and see a dense jungle. You realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
-    buttonText1: "Enter Jungle",
-    buttonText2: "Stay on the Beach",
-    nextSceneButton1: 4,
-    nextSceneButton2: 2,
-    items: ["water bottle"],
+    text: "You have just washed ashore on a beach somewhere out in the ocean. You look around to see if you can find anyone else here. You see no one. Just beach and dense jungle ahead...",
+    buttonText1: "Look around a bit",
+    buttonText2: "Break down and cry",
+    nextSceneButton1: 2,
+    nextSceneButton2: 3,
     image: "assets/images/beach.jpg",
   },
   // 2
   {
-    text: "You decide to sit on the beach and hope to be rescued soon....",
-    buttonText1: "Hope for the best...",
-    nextSceneButton1: 3,
-    image: "assets/images/sit.jpg",
+    text: "You find a water bottle that must have washed ashore along with you! It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
+    buttonText1: "Enter Jungle",
+    buttonText2: "Stay on the Beach",
+    nextSceneButton1: 5,
+    nextSceneButton2: 3,
+    items: ["water bottle"],
+    image: "assets/images/bottle.png",
   },
   // 3
+  {
+    text: "You decide to sit on the beach and hope to be rescued soon....",
+    buttonText1: "Hope for the best...",
+    nextSceneButton1: 4,
+    image: "assets/images/sit.jpg",
+  },
+  // 4
   {
     text: "OH NO! You get stung by something venomous in the sand!!!! You died.....",
     buttonText1: "Play Again?",
@@ -46,16 +55,26 @@ const scenes = [
     nextSceneButton2: 15,
     image: "assets/images/sand.jpg",
   },
-  // 4
+  // 5
+  {
+    text: "Just as you turn to the jungle you see something sparkle by your feet. A beautiful pearl! You pick it up. Who knows, it might come in handy....",
+    buttonText1: "Continue to jungle",
+    buttonText2: "No More please....",
+    nextSceneButton1: 6,
+    nextSceneButton2: 15,
+    items: ["pearl"],
+    image: "assets/images/pearl.png",
+  },
+  // 6
   {
     text: "You are walking in the jungle in search for water and food and you are met with a HUUUUUUGE tree! You will have to go around it. Do you take the right path around? Or the left?",
     buttonText1: "Take the left path",
     buttonText2: "Take the right path",
-    nextSceneButton1: 6,
-    nextSceneButton2: 5,
+    nextSceneButton1: 8,
+    nextSceneButton2: 7,
     image: "assets/images/jungle.jpg",
   },
-  // 5
+  // 7
   {
     text: "OH NO! You come face to face with a scary looking snake! You try to scare it away but it bites you instead. You died.....",
     buttonText1: "Play again?",
@@ -64,128 +83,138 @@ const scenes = [
     nextSceneButton2: 15,
     image: "assets/images/snake.jpg",
   },
-  // 6
+  // 8
   {
-    text: "You see a friendly looking monkey sitting in a tree and decide to talk to it. Who knows, it might be able to talk!",
+    text: "You see a friendly looking monkey sitting on a log on the ground and decide to talk to it. Who knows, it might be able to talk!",
     buttonText1: "Ask monkey for directions",
     buttonText2: "Monkeys can't talk, I'll find my own way",
-    nextSceneButton1: 7,
-    nextSceneButton2: 16,
+    nextSceneButton1: 9,
+    nextSceneButton2: 18,
     image: "assets/images/monkey1.jpg",
   },
-  // 7
+  // 9 make a better scene for button 2 to go to!!
   {
     text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food and shelter as well.....",
     buttonText1: "Look for food",
     buttonText2: "Shelter is more important right now",
-    nextSceneButton1: 8,
+    nextSceneButton1: 10,
     nextSceneButton2: 12,
     image: "assets/images/fresh-water.jpg",
+    showPutDownButton: true, // Show the "Put Down" button in this scene
   },
-  // 8
+  // 10
   {
-    text: "You see two pretty parrots and think about asking them where you can find some food",
+    text: "You see two pretty parrots and think about asking them where you can find some food. The monkey could talk, so why not the parrots too, right...?",
     buttonText1: "Parrot 1 says left",
     buttonText2: "Parrot 2 says right",
     buttonText3: "I'll just eat the parrots...",
-    nextSceneButton1: 17,
-    nextSceneButton2: 9,
-    nextSceneButton3: 10,
+    nextSceneButton1: 19,
+    nextSceneButton2: 11,
+    nextSceneButton3: 12,
     image: "assets/images/parrots.png",
     size: { width: "100%", height: "auto" },
   },
 
-  // 9
+  // 11 make scene for button 2 where you look for shelter with water but no food
   {
-    text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
+    text: "You see some coconuts in a tree! NICE! Now you just need to get them..... ",
     buttonText1: "Climb up and get them",
     buttonText2: "Not risking a fall... look for shelter",
-    nextSceneButton1: 11,
+    nextSceneButton1: 13,
     nextSceneButton2: 12,
     items: ["coconut"],
     image: "assets/images/coconuts.jpg",
     allowPutDown: true,
+    showPutDownButton: false, // Do not show the "Put Down" button here
   },
-  // 10
+  // 12
   {
     text: "OH NO!! The parrots friends knows you want to eat them so they all take flight and attack you!!!! You died....",
     buttonText1: "Play again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 15,
+    nextSceneButton2: 17,
     image: "assets/images/many-birds.jpg",
   },
-  // 11
+  // 13
   {
     text: "You now have food and water, time to look for shelter!",
     buttonText1: "Head back to beach",
-    nextSceneButton1: 12,
+    buttonText2: "Head back to waterfall",
+    nextSceneButton1: 14,
+    nextSceneButton2: 20,
     image: "assets/images/jungle.jpg",
   },
-  // 12
+  // 14
   {
-    text: "You found a hidden cave by the beach!! NICE!! You shall have shelter for the night!",
+    text: "You found a hidden cave by the beach!! NICE!! You shall have shelter for the night! But whats that...? A crab??? ",
     buttonText1: "Build a fire to stay warm",
     buttonText2: "Not risking drawing too much attention at night....",
-    nextSceneButton1: 13,
-    nextSceneButton2: 14,
+    nextSceneButton1: 15,
+    nextSceneButton2: 16,
     image: "assets/images/cave.jpg",
   },
-  // 13
+  // 15
   {
     text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
     buttonText1: "Play again?",
     nextSceneButton1: 0,
     image: "assets/images/ship.jpg",
   },
-  // 14
+  // 16
   {
-    text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you dead....",
+    text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you died....",
     buttonText1: "Play again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 15,
+    nextSceneButton2: 17,
     image: "assets/images/cold.jpg",
   },
-  // 15
+  // 17
   {
     text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
     buttonText1: "You sure you don't want to play again?",
     nextSceneButton1: 0,
     image: "assets/images/end.jpg",
   },
-  // 16
+  // 18
   {
-    text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you dead..",
+    text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you died..",
     buttonText1: "Play again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 15,
+    nextSceneButton2: 17,
     image: "assets/images/gorilla.jpg",
   },
-  // 17
+  // 19
   {
     text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
     buttonText1: "Climb up and get them",
     buttonText2: "Not risking a fall... look for shelter",
-    nextSceneButton1: 11,
+    nextSceneButton1: 13,
     nextSceneButton2: 12,
+    items: ["coconut"],
     image: "assets/images/coconuts2.jpg",
+    allowPutDown: true,
+    showPutDownButton: false, // Do not show the "Put Down" button here
   },
-  // // 18
-  // {
-  //   text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
-  //   buttonText1: "Play again?",
-  //   nextSceneButton1: 0,
-  //   image: "assets/images/end.jpg",
-  // },
-  // // 19
-  // {
-  //   text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
-  //   buttonText1: "Play again?",
-  //   nextSceneButton1: 0,
-  //   image: "assets/images/end.jpg",
-  // },
+  // 20
+  {
+    text: "OH NO!!!!! You stepped in a sticky mud hole by the waterfall river and can't get out! You are sinking, SINKIIIIING!!!! Your died.....",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 17,
+    image: "assets/images/mud.png",
+  },
+  // 21
+  {
+    text: "The crab does not want to let you into it's cave! How rude. Maybe you have something to give the crab to buy your way into it's cave.....",
+    buttonText1: "Play again?",
+    nextSceneButton1: 0,
+    image: "assets/images/end.jpg",
+    showPutDownButton: true, // Show the "Put Down" button in this scene
+  },
 ];
 
 function updateScene() {
@@ -242,9 +271,9 @@ function updateScene() {
     pickupButton.style.display = "none";
   }
 
-  // Show "Put down" button only if the scene allows it and there are items in the inventory
+  // --- Show "Put Down" button only if `showPutDownButton` is true in this scene ---
   const putDownButton = document.getElementById("putDownButton");
-  if (scene.allowPutDown && inventory.length > 0) {
+  if (scene.showPutDownButton && inventory.length > 0) {
     putDownButton.style.display = "inline-block";
     putDownButton.onclick = function () {
       const itemToDrop = prompt(
@@ -253,16 +282,16 @@ function updateScene() {
         )}`
       );
       if (itemToDrop && inventory.includes(itemToDrop)) {
-        dropItem(itemToDrop);
-        scene.items.push(itemToDrop); // Return item to the scene
-        saveGameState();
-        updateScene(); // Refresh to show changes
+        dropItem(itemToDrop); // Drop the selected item
+        scene.items.push(itemToDrop); // Place the item in the scene
+        saveGameState(); // Save updated game state
+        updateScene(); // Refresh the scene to reflect changes
       } else {
         alert("Item not found in inventory.");
       }
     };
   } else {
-    putDownButton.style.display = "none";
+    putDownButton.style.display = "none"; // Hide "Put Down" button if not needed
   }
 
   // Update inventory display after changes
