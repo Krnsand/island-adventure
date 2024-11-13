@@ -6,6 +6,8 @@ function main() {
   loadGameState();
   removeGameState();
   updateScene();
+  pickUpItem();
+  dropItem();
   handleButtonClick();
   updateInventoryDisplay();
 }
@@ -40,7 +42,7 @@ const scenes = [
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 5,
     nextSceneButton2: 3,
-    items: ["Water bottle"],
+    items: ["bottle"],
     image: "assets/images/bottle.png",
   },
   // 3
@@ -66,7 +68,7 @@ const scenes = [
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 6,
     nextSceneButton2: 3,
-    items: ["Pearl"],
+    items: ["pearl"],
     image: "assets/images/pearl.png",
   },
   // 6
