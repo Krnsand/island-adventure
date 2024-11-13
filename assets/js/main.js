@@ -6,12 +6,6 @@ function main() {
   updateInventoryDisplay();
 }
 
-// let pickedUpItems = ["bird", "pen", "key"];
-// const index = pickedUpItems.indexOf("pen");
-// pickedUpItems.splice(index, 1);
-
-// splice = välja items i arrayer via index nummer
-
 // Initial scene index to track where we are in the story
 let currentScene = 0;
 let inventory = [];
@@ -33,7 +27,7 @@ const scenes = [
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 4,
     nextSceneButton2: 2,
-    items: ["water bottle"], // Item to pick up
+    items: ["water bottle"],
     image: "assets/images/beach.jpg",
   },
   // 2
@@ -306,7 +300,7 @@ function handleButtonClick(buttonNumber) {
   } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
     currentScene = scene.nextSceneButton2;
   } else if (buttonNumber === 3 && scene.nextSceneButton3 !== undefined) {
-    currentScene = scene.nextSceneButton3; // Go to the scene specified for Button 3
+    currentScene = scene.nextSceneButton3;
   }
 
   updateScene();
