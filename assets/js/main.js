@@ -14,7 +14,7 @@ let inventory = [];
 const scenes = [
   // 0
   {
-    text: "Welcome to the virtual Island Adventure! Click Start to begin your adventure!",
+    text: "Welcome to your very own little Island Adventure! Safe from harm on your device. Click Start to begin your adventure!",
     buttonText1: "Start",
     isStart: true,
     nextSceneButton1: 1,
@@ -31,12 +31,12 @@ const scenes = [
   },
   // 2
   {
-    text: "You find a water bottle that must have washed ashore along with you! It's empty. You know you need to find fresh water and food in order to survive. You can't see anything else on the beach so you realize you will need to enter the jungle in order to find food, water and shelter, but there could be dangers in there....",
-    buttonText1: "Enter Jungle",
+    text: "You find a water bottle that must have washed ashore along with you! It's empty. You realize you will need to enter the jungle in order to find food, water and shelter to survive, but there could be dangers in there....",
+    buttonText1: "Go to Jungle",
     buttonText2: "Stay on the Beach",
     nextSceneButton1: 5,
     nextSceneButton2: 3,
-    items: ["water bottle"],
+    items: ["Water bottle"],
     image: "assets/images/bottle.png",
   },
   // 3
@@ -52,17 +52,17 @@ const scenes = [
     buttonText1: "Play Again?",
     buttonText2: "No More please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 15,
+    nextSceneButton2: 26,
     image: "assets/images/sand.jpg",
   },
   // 5
   {
     text: "Just as you turn to the jungle you see something sparkle by your feet. A beautiful pearl! You pick it up. Who knows, it might come in handy....",
     buttonText1: "Continue to jungle",
-    buttonText2: "No More please....",
+    buttonText2: "Stay on the Beach",
     nextSceneButton1: 6,
-    nextSceneButton2: 15,
-    items: ["pearl"],
+    nextSceneButton2: 3,
+    items: ["Pearl"],
     image: "assets/images/pearl.png",
   },
   // 6
@@ -80,7 +80,7 @@ const scenes = [
     buttonText1: "Play again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 15,
+    nextSceneButton2: 26,
     image: "assets/images/snake.jpg",
   },
   // 8
@@ -89,44 +89,40 @@ const scenes = [
     buttonText1: "Ask monkey for directions",
     buttonText2: "Monkeys can't talk, I'll find my own way",
     nextSceneButton1: 9,
-    nextSceneButton2: 18,
-    image: "assets/images/monkey1.jpg",
+    nextSceneButton2: 10,
+    image: "assets/images/monkey.jpg",
   },
-  // 9 make a better scene for button 2 to go to!!
+  // 9
   {
-    text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food and shelter as well.....",
+    text: "You arrive at a beautiful waterfall that runs into a river where you can fill your water bottle! NICE! You shall not die of thirst today! Now you just need some food and shelter.....",
     buttonText1: "Look for food",
     buttonText2: "Shelter is more important right now",
-    nextSceneButton1: 10,
-    nextSceneButton2: 12,
+    nextSceneButton1: 11,
+    nextSceneButton2: 16,
     image: "assets/images/fresh-water.jpg",
-    showPutDownButton: true, // Show the "Put Down" button in this scene
   },
   // 10
+  {
+    text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you died..",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 17,
+    image: "assets/images/gorilla.jpg",
+  },
+  // 11
   {
     text: "You see two pretty parrots and think about asking them where you can find some food. The monkey could talk, so why not the parrots too, right...?",
     buttonText1: "Parrot 1 says left",
     buttonText2: "Parrot 2 says right",
     buttonText3: "I'll just eat the parrots...",
-    nextSceneButton1: 19,
-    nextSceneButton2: 11,
+    nextSceneButton1: 13,
+    nextSceneButton2: 13,
     nextSceneButton3: 12,
     image: "assets/images/parrots.png",
     size: { width: "100%", height: "auto" },
   },
 
-  // 11 make scene for button 2 where you look for shelter with water but no food
-  {
-    text: "You see some coconuts in a tree! NICE! Now you just need to get them..... ",
-    buttonText1: "Climb up and get them",
-    buttonText2: "Not risking a fall... look for shelter",
-    nextSceneButton1: 13,
-    nextSceneButton2: 12,
-    items: ["coconut"],
-    image: "assets/images/coconuts.jpg",
-    allowPutDown: true,
-    showPutDownButton: false, // Do not show the "Put Down" button here
-  },
   // 12
   {
     text: "OH NO!! The parrots friends knows you want to eat them so they all take flight and attack you!!!! You died....",
@@ -138,82 +134,131 @@ const scenes = [
   },
   // 13
   {
-    text: "You now have food and water, time to look for shelter!",
-    buttonText1: "Head back to beach",
-    buttonText2: "Head back to waterfall",
+    text: "You see some coconuts in a tree! NICE! Now you just need to get them..... ",
+    buttonText1: "Climb up and get them",
+    buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 14,
-    nextSceneButton2: 20,
-    image: "assets/images/jungle.jpg",
+    nextSceneButton2: 16,
+    image: "assets/images/climb.jpg",
+    // allowPutDown: true,
+    showPutDownButton: false, // Do not show the "Put Down" button here
   },
   // 14
   {
-    text: "You found a hidden cave by the beach!! NICE!! You shall have shelter for the night! But whats that...? A crab??? ",
-    buttonText1: "Build a fire to stay warm",
-    buttonText2: "Not risking drawing too much attention at night....",
+    text: "NICE! Coconuts! Pick one and carefully climb down",
+    buttonText1: "Carefully climb down",
+    buttonText2: "I got this jungle shit, I feel like Tarzan!",
     nextSceneButton1: 15,
-    nextSceneButton2: 16,
-    image: "assets/images/cave.jpg",
+    nextSceneButton2: 17,
+    items: ["coconut"],
+    image: "assets/images/coconuts.jpg",
+    // allowPutDown: true,
+    showPutDownButton: false, // Do not show the "Put Down" button here
   },
   // 15
+  {
+    text: "You now have food and water, time to look for shelter!",
+    buttonText1: "Head back to beach",
+    buttonText2: "Head back to waterfall",
+    nextSceneButton1: 18,
+    nextSceneButton2: 20,
+    image: "assets/images/jungle.jpg",
+  },
+  // 16
+  {
+    text: "You now have water but no food.... time to look for shelter!",
+    buttonText1: "Head back to beach",
+    buttonText2: "Look around by the waterfall",
+    nextSceneButton1: 18,
+    nextSceneButton2: 19,
+    image: "assets/images/jungle.jpg",
+  },
+  // 17
+  {
+    text: "You slip and fall aaaaall the way down and hit your head.... you died....",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 26,
+    image: "assets/images/fall.jpg",
+  },
+  // 18
+  {
+    text: "You found a hidden cave by the beach!! But whats that at the entrance...? A crab??? ",
+    buttonText1: "Walk past crab",
+    buttonText2: "I'll just eat the crab....",
+    nextSceneButton1: 20,
+    nextSceneButton2: 21,
+    image: "assets/images/cave.jpg",
+  },
+  // 19
+  {
+    text: "OH NO!!!!! You stepped in a sticky mud hole by the waterfall river and can't get out! You are sinking, SINKIIIIING!!!! Your died.....",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 26,
+    image: "assets/images/mud.png",
+  },
+  // 20
+  {
+    text: "The crab does not want to let you into it's cave! How rude. Maybe you have something pretty to give the crab to buy your way into it's cave.....",
+    buttonText1: "Give pearl to crab",
+    buttonText2: "The pearl is mine!!!!",
+    nextSceneButton1: 22,
+    nextSceneButton2: 23,
+    image: "assets/images/crab.jpg",
+    showPutDownButton: true, // Show the "Put Down" button in this scene
+  },
+  // 21
+  {
+    text: "OH NO!!!!! The crab turns into a HUGE crab and EATS YOU INSTEAD!!!! You died....",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 26,
+    image: "assets/images/mud.png",
+  },
+  // 22
+  {
+    text: "The crab happily takes the pearl as payment for the cave!  NICE!! You shall have shelter for the night!",
+    buttonText1: "Build a fire to stay warm",
+    buttonText2: "Not risking drawing too much attention at night....",
+    nextSceneButton1: 24,
+    nextSceneButton2: 25,
+    image: "assets/images/cave.jpg",
+  },
+  // 23
+  {
+    text: "The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
+    buttonText1: "Play again?",
+    buttonText2: "No more please....",
+    nextSceneButton1: 0,
+    nextSceneButton2: 26,
+    image: "assets/images/cave.jpg",
+  },
+  // 24
   {
     text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
     buttonText1: "Play again?",
     nextSceneButton1: 0,
     image: "assets/images/ship.jpg",
   },
-  // 16
+  // 25
   {
     text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you died....",
     buttonText1: "Play again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 17,
+    nextSceneButton2: 26,
     image: "assets/images/cold.jpg",
   },
-  // 17
+  // 26
   {
-    text: "Sad to see you go! Maybe you will get washed up again and make better choices :)",
+    text: "Sad to see you go! Maybe you will get washed up again and make better choices that time :)",
     buttonText1: "You sure you don't want to play again?",
     nextSceneButton1: 0,
     image: "assets/images/end.jpg",
-  },
-  // 18
-  {
-    text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you died..",
-    buttonText1: "Play again?",
-    buttonText2: "No more please....",
-    nextSceneButton1: 0,
-    nextSceneButton2: 17,
-    image: "assets/images/gorilla.jpg",
-  },
-  // 19
-  {
-    text: "You see some coconuts in a tree! Perfect! Now you just need to get them..... ",
-    buttonText1: "Climb up and get them",
-    buttonText2: "Not risking a fall... look for shelter",
-    nextSceneButton1: 13,
-    nextSceneButton2: 12,
-    items: ["coconut"],
-    image: "assets/images/coconuts2.jpg",
-    allowPutDown: true,
-    showPutDownButton: false, // Do not show the "Put Down" button here
-  },
-  // 20
-  {
-    text: "OH NO!!!!! You stepped in a sticky mud hole by the waterfall river and can't get out! You are sinking, SINKIIIIING!!!! Your died.....",
-    buttonText1: "Play again?",
-    buttonText2: "No more please....",
-    nextSceneButton1: 0,
-    nextSceneButton2: 17,
-    image: "assets/images/mud.png",
-  },
-  // 21
-  {
-    text: "The crab does not want to let you into it's cave! How rude. Maybe you have something to give the crab to buy your way into it's cave.....",
-    buttonText1: "Play again?",
-    nextSceneButton1: 0,
-    image: "assets/images/end.jpg",
-    showPutDownButton: true, // Show the "Put Down" button in this scene
   },
 ];
 
