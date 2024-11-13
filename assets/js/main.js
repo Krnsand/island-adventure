@@ -304,15 +304,15 @@ const scenes = [
  */
 function restartGame() {
   // Reset core variables
-  currentScene = 0; // Reset to the starting scene
-  inventory = []; // Clear the inventory array
+  currentScene = 0;
+  inventory = [];
 
   // Clear saved data in local storage
   removeGameState();
 
   // Refresh displays to show initial empty state
-  updateInventoryDisplay(); // Update inventory display to show it's empty
-  updateScene(); // Refresh to display the first scene
+  updateInventoryDisplay();
+  updateScene();
 }
 
 /**
@@ -438,8 +438,8 @@ function updateScene() {
  */
 function pickUpItem(item) {
   inventory.push(item);
-  updateInventoryDisplay(); // Refresh inventory display immediately
-  saveGameState(); // Save the new inventory to local storage
+  updateInventoryDisplay();
+  saveGameState();
 }
 
 /**
@@ -449,10 +449,10 @@ function pickUpItem(item) {
 function dropItem(item) {
   const itemIndex = inventory.indexOf(item);
   if (itemIndex > -1) {
-    inventory.splice(itemIndex, 1); // Remove item from inventory
+    inventory.splice(itemIndex, 1);
   }
-  updateInventoryDisplay(); // Refresh inventory display immediately
-  saveGameState(); // Save the updated inventory to local storage
+  updateInventoryDisplay();
+  saveGameState();
 }
 
 /**
