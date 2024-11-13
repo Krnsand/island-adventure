@@ -91,7 +91,7 @@ main {
 #buttonContainer {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 10px;
   flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
 }

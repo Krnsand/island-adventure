@@ -20,7 +20,7 @@ let inventory = [];
 const scenes = [
   // 0
   {
-    text: "Welcome to your very own little Island Adventure! Safe from harm on your device. Click Start to begin your adventure!",
+    text: "Welcome to your very own little Island Adventure game! Safe from harm on your device. Click Start to begin your adventure!",
     buttonText1: "Start",
     isStart: true,
     nextSceneButton1: 1,
@@ -226,7 +226,7 @@ const scenes = [
   {
     text: "The crab happily takes the pearl as payment for the cave!  NICE!! You shall have shelter for the night!",
     buttonText1: "Build a fire to stay warm",
-    buttonText2: "Not risking drawing too much attention at night....",
+    buttonText2: "Not risking drawing attention at night....",
     nextSceneButton1: 24,
     nextSceneButton2: 25,
     image: "assets/images/cave.jpg",
