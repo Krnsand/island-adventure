@@ -1,5 +1,9 @@
 window.addEventListener("DOMContentLoaded", main);
 
+/**
+ * The main function to initialize the game upon page load.
+ * Calls various setup functions for the game.
+ */
 function main() {
   restartGame();
   saveGameState();
@@ -12,11 +16,41 @@ function main() {
   updateInventoryDisplay();
 }
 
-// Initial scene index to track where we are in the story
+/**
+ * Index representing the current scene in the game story.
+ * Starts at 0 and changes as the player progresses through scenes.
+ * @type {number}
+ */
 let currentScene = 0;
+
+/**
+ * Array holding items that the player has collected during the game.
+ * This array updates as items are picked up or dropped.
+ * @type {Array<string>}
+ */
 let inventory = [];
 
-// Scenes array with different scenes, each with text and button options
+/**
+ * An array of scene objects representing different stages of the adventure.
+ * Each scene object contains text, button options, and other attributes that
+ * define what the user sees and can interact with in that scene.
+ *
+ * @type {Array<Object>}
+ * @property {string} text - The narrative text displayed to the user for this scene.
+ * @property {string} buttonText1 - The text displayed on the primary button.
+ * @property {string} [buttonText2] - Optional text displayed on the secondary button.
+ * @property {string} [buttonText3] - Optional text displayed on the tertiary button.
+ * @property {number} nextSceneButton1 - The index of the next scene when button 1 is clicked.
+ * @property {number} [nextSceneButton2] - The index of the next scene when button 2 is clicked.
+ * @property {number} [nextSceneButton3] - The index of the next scene when button 3 is clicked.
+ * @property {Array<string>} [items] - Optional list of items available to pick up in this scene.
+ * @property {string} image - The path to the image file displayed in this scene.
+ * @property {Object} [size] - Optional custom dimensions for the scene image.
+ * @property {string} [size.width] - Width of the image.
+ * @property {string} [size.height] - Height of the image.
+ * @property {boolean} [isStart=false] - Indicates if this scene is the starting scene.
+ * @property {boolean} [showPutDownButton=false] - Indicates if the "Put Down" button is shown.
+ */
 const scenes = [
   // 0
   {
@@ -265,6 +299,9 @@ const scenes = [
   },
 ];
 
+/**
+ * Resets the game to the initial state, including clearing inventory and scene. It's not doing that now, but it's the goal
+ */
 function restartGame() {
   // Reset core variables
   currentScene = 0; // Reset to the starting scene
@@ -278,19 +315,26 @@ function restartGame() {
   updateScene(); // Refresh to display the first scene
 }
 
-// Clear specific game state keys from localStorage
+/**
+ * Removes saved game data from localStorage.
+ */
 function removeGameState() {
   localStorage.removeItem("currentScene");
   localStorage.removeItem("inventory");
 }
 
-// Reset function for saving game state to localStorage
+/**
+ * Saves the current game state (scene and inventory) to localStorage.
+ */
 function saveGameState() {
   localStorage.setItem("currentScene", currentScene);
   localStorage.setItem("inventory", JSON.stringify(inventory));
 }
 
-// Initialize game state from localStorage
+/**
+ * Loads the saved game state from localStorage.
+ * Sets the current scene and inventory based on the saved state.
+ */
 function loadGameState() {
   const savedScene = localStorage.getItem("currentScene");
   const savedInventory = localStorage.getItem("inventory");
@@ -303,7 +347,10 @@ function loadGameState() {
   }
 }
 
-// Update the scene based on the current scene
+/**
+ * Updates the display based on the current scene information.
+ * Manages scene text, image, button states, and custom item options.
+ */
 function updateScene() {
   const scene = scenes[currentScene];
 
@@ -385,14 +432,20 @@ function updateScene() {
   updateInventoryDisplay();
 }
 
-// Pick up an item and add to inventory
+/**
+ * Adds an item to the player's inventory and updates the display.
+ * @param {string} item - The item to add to the inventory.
+ */
 function pickUpItem(item) {
   inventory.push(item);
   updateInventoryDisplay(); // Refresh inventory display immediately
   saveGameState(); // Save the new inventory to local storage
 }
 
-// Drop an item and remove from inventory
+/**
+ * Removes an item from the player's inventory and updates the display.
+ * @param {string} item - The item to remove from the inventory.
+ */
 function dropItem(item) {
   const itemIndex = inventory.indexOf(item);
   if (itemIndex > -1) {
@@ -402,7 +455,9 @@ function dropItem(item) {
   saveGameState(); // Save the updated inventory to local storage
 }
 
-// Display inventory items
+/**
+ * Updates the inventory display on the screen with the current items.
+ */
 function updateInventoryDisplay() {
   const inventoryDiv = document.getElementById("inventory");
   inventoryDiv.textContent = `Inventory: ${
@@ -410,7 +465,10 @@ function updateInventoryDisplay() {
   }`;
 }
 
-// Handle button click for scene navigation and restart
+/**
+ * Handles navigation between scenes based on the button clicked.
+ * @param {number} buttonNumber - The button number that was clicked.
+ */
 function handleButtonClick(buttonNumber) {
   const scene = scenes[currentScene];
 
