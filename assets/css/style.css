@@ -93,14 +93,58 @@ main {
   justify-content: center;
   gap: 2rem;
   margin-top: 10px;
+  flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
 }
 
 #buttonContainer button {
   padding: 10px 20px;
   background-color: rgb(13, 77, 17);
   color: aliceblue;
+  cursor: pointer;
+  font-family: 'Sour gummy', sans-serif;
+  text-shadow: 1px 1px #000000;
+  font-size: 22px;
+  box-shadow: 2px 2px #000000;
+  letter-spacing: 1px;
   border-radius: 8px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
+
+/* Hover and Active states */
+#buttonContainer button:hover {
+  background-color: rgb(14, 48, 15);
+}
+
+#buttonContainer button:active {
+  background-color: rgb(14, 48, 15);
+  box-shadow: 0 5px #000000;
+  transform: translateY(4px);
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  #buttonContainer {
+    gap: 1rem; 
+  }
+  #buttonContainer button {
+    font-size: 20px;
+    padding: 8px 16px; 
+  }
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 480px) {
+  #buttonContainer {
+    flex-direction: column; 
+    align-items: center;
+  }
+  #buttonContainer button {
+    font-size: 16px;
+    padding: 6px 12px; 
+    width: 80%; 
+  }
+}
+
 
 /* Inventory styling */
 #inventory {
