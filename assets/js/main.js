@@ -1,7 +1,13 @@
 window.addEventListener("DOMContentLoaded", main);
 
 function main() {
+  restartGame();
+  saveGameState();
+  loadGameState();
+  removeGameState();
   updateScene();
+  pickUpItem();
+  dropItem();
   handleButtonClick();
   updateInventoryDisplay();
 }
@@ -18,7 +24,7 @@ const scenes = [
     buttonText1: "Start",
     isStart: true,
     nextSceneButton1: 1,
-    image: "assets/images/start-beach.jpg",
+    image: "assets/images/start-scene.png",
   },
   // 1
   {
@@ -130,7 +136,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 17,
-    image: "assets/images/many-birds.jpg",
+    image: "assets/images/many-birds.png",
   },
   // 13
   {
@@ -262,6 +268,45 @@ const scenes = [
   },
 ];
 
+function restartGame() {
+  // Reset core variables
+  currentScene = 0; // Reset to the starting scene
+  inventory = []; // Clear the inventory array
+
+  // Clear saved data in local storage
+  removeGameState();
+
+  // Refresh displays to show initial empty state
+  updateInventoryDisplay(); // Update inventory display to show it's empty
+  updateScene(); // Refresh to display the first scene
+}
+
+// Clear specific game state keys from localStorage
+function removeGameState() {
+  localStorage.removeItem("currentScene");
+  localStorage.removeItem("inventory");
+}
+
+// Reset function for saving game state to localStorage
+function saveGameState() {
+  localStorage.setItem("currentScene", currentScene);
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+}
+
+// Initialize game state from localStorage
+function loadGameState() {
+  const savedScene = localStorage.getItem("currentScene");
+  const savedInventory = localStorage.getItem("inventory");
+
+  if (savedScene !== null) {
+    currentScene = parseInt(savedScene, 10);
+  }
+  if (savedInventory !== null) {
+    inventory = JSON.parse(savedInventory);
+  }
+}
+
+// Update the scene based on the current scene
 function updateScene() {
   const scene = scenes[currentScene];
 
@@ -299,7 +344,7 @@ function updateScene() {
     button3.innerText = scene.buttonText3;
     button3.style.display = "inline-block";
   } else {
-    button3.style.display = "none"; // Hide button if not needed
+    button3.style.display = "none";
   }
 
   // Show "Pick up" button only if items are available in the scene
@@ -309,14 +354,14 @@ function updateScene() {
     pickupButton.onclick = function () {
       scene.items.forEach((item) => pickUpItem(item));
       scene.items = []; // Clear items in scene after picking up
-      saveGameState();
+      saveGameState(); // Save updated game state
       updateScene(); // Refresh to hide "Pick up" button
     };
   } else {
     pickupButton.style.display = "none";
   }
 
-  // --- Show "Put Down" button only if `showPutDownButton` is true in this scene ---
+  // Show "Put Down" button if needed
   const putDownButton = document.getElementById("putDownButton");
   if (scene.showPutDownButton && inventory.length > 0) {
     putDownButton.style.display = "inline-block";
@@ -327,16 +372,16 @@ function updateScene() {
         )}`
       );
       if (itemToDrop && inventory.includes(itemToDrop)) {
-        dropItem(itemToDrop); // Drop the selected item
+        dropItem(itemToDrop);
         scene.items.push(itemToDrop); // Place the item in the scene
         saveGameState(); // Save updated game state
-        updateScene(); // Refresh the scene to reflect changes
+        updateScene();
       } else {
         alert("Item not found in inventory.");
       }
     };
   } else {
-    putDownButton.style.display = "none"; // Hide "Put Down" button if not needed
+    putDownButton.style.display = "none";
   }
 
   // Update inventory display after changes
@@ -347,6 +392,7 @@ function updateScene() {
 function pickUpItem(item) {
   inventory.push(item);
   updateInventoryDisplay(); // Refresh inventory display immediately
+  saveGameState(); // Save the new inventory to local storage
 }
 
 // Drop an item and remove from inventory
@@ -356,6 +402,7 @@ function dropItem(item) {
     inventory.splice(itemIndex, 1); // Remove item from inventory
   }
   updateInventoryDisplay(); // Refresh inventory display immediately
+  saveGameState(); // Save the updated inventory to local storage
 }
 
 // Display inventory items
@@ -366,9 +413,23 @@ function updateInventoryDisplay() {
   }`;
 }
 
+// Handle button click for scene navigation and restart
 function handleButtonClick(buttonNumber) {
   const scene = scenes[currentScene];
 
+  // Check if the button clicked is "Play Again?"
+  if (buttonNumber === 1 && scene.buttonText1 === "Play Again?") {
+    restartGame();
+    return; // Stop further processing as game is restarted
+  } else if (buttonNumber === 2 && scene.buttonText2 === "Play Again?") {
+    restartGame();
+    return; // Stop further processing as game is restarted
+  } else if (buttonNumber === 3 && scene.buttonText3 === "Play Again?") {
+    restartGame();
+    return; // Stop further processing as game is restarted
+  }
+
+  // Otherwise, proceed with normal scene navigation
   if (buttonNumber === 1) {
     currentScene = scene.nextSceneButton1;
   } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
@@ -377,9 +438,11 @@ function handleButtonClick(buttonNumber) {
     currentScene = scene.nextSceneButton3;
   }
 
+  saveGameState(); // Save the updated current scene
   updateScene();
 }
 
+// Attach event listeners for the main action buttons
 document.getElementById("actionButton1").addEventListener("click", function () {
   handleButtonClick(1);
 });
@@ -390,4 +453,6 @@ document.getElementById("actionButton3").addEventListener("click", function () {
   handleButtonClick(3);
 });
 
+// Load the saved game state on page load
+loadGameState();
 updateScene();
