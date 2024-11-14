@@ -15,6 +15,7 @@ function main() {
   dropItem();
   handleButtonClick();
   attachEventListeners();
+  updateYear();
 }
 
 /**
@@ -153,7 +154,7 @@ const scenes = [
   },
   // 11
   {
-    text: "You see two pretty parrots and think about asking them where you can find some food. The monkey could talk, so why not the parrots too, right...?",
+    text: "You see two pretty parrots and ask them where you can find some food. The monkey could talk, so the parrots should too, right...?",
     buttonText1: "Parrot 1 says left",
     buttonText2: "Parrot 2 says right",
     buttonText3: "I'll just eat the parrots...",
@@ -241,8 +242,8 @@ const scenes = [
   // 20
   {
     text: "The crab does not want to let you into it's cave! How rude. Maybe you have something pretty to give the crab to buy your way into it's cave.....",
-    buttonText1: "Give pearl to crab",
-    buttonText2: "The pearl is mine!!!!",
+    buttonText1: "Give to crab",
+    buttonText2: "It's mine!!!!",
     nextSceneButton1: 22,
     nextSceneButton2: 23,
     image: "assets/images/crab.jpg",
@@ -335,6 +336,18 @@ function restartGame() {
   // Refresh displays to show initial empty state
   updateInventoryDisplay();
   updateScene();
+
+  // Trigger zoom-in animation on the h1 header
+  const header = document.querySelector("h1");
+
+  // Remove the animation class to reset the animation
+  header.classList.remove("zoom-in-animation");
+
+  // Force a reflow so that the animation is reset
+  void header.offsetWidth; // This triggers a reflow
+
+  // Add the animation class to restart the animation
+  header.classList.add("zoom-in-animation");
 }
 
 /**
@@ -534,3 +547,10 @@ function handleButtonClick(buttonNumber) {
 // Load the saved game state on page load
 loadGameState();
 updateScene();
+
+// Function to set the current year
+function updateYear() {
+  const yearElement = document.getElementById("year");
+  const currentYear = new Date().getFullYear();
+  yearElement.textContent = currentYear;
+}
