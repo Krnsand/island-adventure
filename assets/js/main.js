@@ -450,7 +450,7 @@ function updateScene() {
       if (itemToDrop && inventory.includes(itemToDrop)) {
         dropItem(itemToDrop);
         scene.items.push(itemToDrop); // Place the item in the scene
-        saveGameState(); // Save updated game state
+        // saveGameState(); // Save updated game state
         updateScene();
       } else {
         alert("Item not found in inventory.");
