@@ -175,7 +175,7 @@ const scenes = [
   },
   // 13
   {
-    text: "You see some coconuts in a tree! NICE! Now you just need to get them..... ",
+    text: "You see some coconuts in a tree! HURRAY! Now you just need to get them..... ",
     buttonText1: "Climb up and get them",
     buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 14,
@@ -195,11 +195,11 @@ const scenes = [
   },
   // 15
   {
-    text: "You now have food and water, time to look for shelter!",
+    text: "You now have food AND water, time to look for shelter!",
     buttonText1: "Head back to beach",
     buttonText2: "Head back to waterfall",
     nextSceneButton1: 18,
-    nextSceneButton2: 20,
+    nextSceneButton2: 19,
     image: "assets/images/jungle.jpg",
   },
   // 16
@@ -227,7 +227,7 @@ const scenes = [
     buttonText2: "I'll just eat the crab....",
     nextSceneButton1: 20,
     nextSceneButton2: 21,
-    image: "assets/images/cave1.jpg",
+    image: "assets/images/small-crab.png",
   },
   // 19
   {
@@ -255,7 +255,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/crab-eat.png",
+    image: "assets/images/big-crab.png",
   },
   // 22
   {
@@ -264,20 +264,20 @@ const scenes = [
     buttonText2: "Not risking drawing attention at night....",
     nextSceneButton1: 24,
     nextSceneButton2: 25,
-    image: "assets/images/cave.jpg",
+    image: "assets/images/small-crab.png",
   },
   // 23
   {
-    text: "OH NO!!! The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
+    text: "OH NO!!! The crab is SO offended by your greed and selfishness that turns HUGE and CHOMPS off your foot!!!! You bleed out and die......",
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/crab-eat.jpg",
+    image: "assets/images/big-crab.png",
   },
   // 24
   {
-    text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
+    text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU HAVE SURVIVED!!!!! Congratz! ",
     buttonText1: "Play Again?",
     nextSceneButton1: 0,
     image: "assets/images/ship.jpg",
