@@ -375,22 +375,32 @@ function loadGameState() {
  */
 function updateScene() {
   const scene = scenes[currentScene];
+  const sceneImage = document.getElementById("sceneImage");
+  const sceneImageContainer = sceneImage.parentNode; // Förälderelementet med klassen fade-in-image
 
-  // Update scene text and image
-  document.getElementById("sceneText").innerText = scene.text;
-  document.getElementById("sceneImage").src = scene.image || "";
-  document.getElementById("sceneImage").style.display = scene.image
-    ? "block"
-    : "none";
+  // Ta bort klassen för fade-in för att återställa animationen
+  sceneImageContainer.classList.remove("fade-in-image");
 
-  // Apply custom size if it exists, otherwise default size
-  if (scene.size) {
-    sceneImage.style.width = scene.size.width;
-    sceneImage.style.height = scene.size.height;
-  } else {
-    sceneImage.style.width = "100%"; // or any default size you want
-    sceneImage.style.height = "auto";
-  }
+  // Gör en liten fördröjning för att säkerställa att klassen verkligen tas bort
+  setTimeout(() => {
+    // Update scene text and image
+    document.getElementById("sceneText").innerText = scene.text;
+    document.getElementById("sceneImage").src = scene.image || "";
+    document.getElementById("sceneImage").style.display = scene.image
+      ? "block"
+      : "none";
+
+    // Apply custom size if it exists, otherwise default size
+    if (scene.size) {
+      sceneImage.style.width = scene.size.width;
+      sceneImage.style.height = scene.size.height;
+    } else {
+      sceneImage.style.width = "100%"; // or any default size you want
+      sceneImage.style.height = "auto";
+    }
+    // Lägg till klassen igen för att trigga fade-in-animationen
+    sceneImageContainer.classList.add("fade-in-image");
+  }, 10); // 10 ms fördröjning för att säkerställa att borttagningen registreras
 
   // Update button 1 (primary button)
   document.getElementById("actionButton1").innerText = scene.buttonText1;
