@@ -148,7 +148,7 @@ const scenes = [
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 17,
+    nextSceneButton2: 26,
     image: "assets/images/gorilla.jpg",
   },
   // 11
@@ -170,7 +170,7 @@ const scenes = [
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
-    nextSceneButton2: 17,
+    nextSceneButton2: 26,
     image: "assets/images/many-birds.png",
   },
   // 13
@@ -213,7 +213,7 @@ const scenes = [
   },
   // 17
   {
-    text: "You slip and fall aaaaall the way down and hit your head.... you died....",
+    text: "OH NO!!!!! You slip and fall aaaaall the way down and hit your head.... you died....",
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
@@ -268,7 +268,7 @@ const scenes = [
   },
   // 23
   {
-    text: "The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
+    text: "OH NO!!! The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
