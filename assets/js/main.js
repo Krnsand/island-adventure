@@ -426,12 +426,15 @@ function updateScene() {
   // Show "Pick up" button if items are available in the scene
   const pickupButton = document.getElementById("pickupButton");
   if (scene.items && scene.items.length > 0) {
+    const itemName = scene.items[0]; // Assuming one item per scene for simplicity
     pickupButton.style.display = "inline-block";
+    pickupButton.innerText = `Pick up ${itemName}`; // Update button text with item name
+
     pickupButton.onclick = function () {
-      scene.items.forEach((item) => pickUpItem(item));
-      scene.items = []; // Clear items in scene after picking up
+      pickUpItem(itemName); // Pick up the item
+      // scene.items = []; // Clear items after picking up
       saveGameState(); // Save updated game state
-      updateScene(); // Refresh to hide "Pick up" button
+      updateScene(); // Refresh scene to update button visibility
     };
   } else {
     pickupButton.style.display = "none";
