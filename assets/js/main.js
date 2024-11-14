@@ -5,15 +5,16 @@ window.addEventListener("DOMContentLoaded", main);
  * Calls various setup functions for the game.
  */
 function main() {
-  restartGame();
-  saveGameState();
   loadGameState();
-  removeGameState();
   updateScene();
+  updateInventoryDisplay();
+  restartGame();
+  removeGameState();
+  saveGameState();
   pickUpItem();
   dropItem();
   handleButtonClick();
-  updateInventoryDisplay();
+  attachEventListeners();
 }
 
 /**
@@ -117,7 +118,7 @@ const scenes = [
   // 7
   {
     text: "OH NO! You come face to face with a scary looking snake! You try to scare it away but it bites you instead. You died.....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -144,7 +145,7 @@ const scenes = [
   // 10
   {
     text: "OH NO!!! You run into a HUUUUGE gorilla with babies!!! He kills you..... you died..",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 17,
@@ -166,7 +167,7 @@ const scenes = [
   // 12
   {
     text: "OH NO!! The parrots friends knows you want to eat them so they all take flight and attack you!!!! You died....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 17,
@@ -213,7 +214,7 @@ const scenes = [
   // 17
   {
     text: "You slip and fall aaaaall the way down and hit your head.... you died....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -231,7 +232,7 @@ const scenes = [
   // 19
   {
     text: "OH NO!!!!! You stepped in a sticky mud hole by the waterfall river and can't get out! You are sinking, SINKIIIIING!!!! Your died.....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -250,7 +251,7 @@ const scenes = [
   // 21
   {
     text: "OH NO!!!!! The crab turns into a HUGE crab and EATS YOU INSTEAD!!!! You died....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -268,7 +269,7 @@ const scenes = [
   // 23
   {
     text: "The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -277,14 +278,14 @@ const scenes = [
   // 24
   {
     text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     nextSceneButton1: 0,
     image: "assets/images/ship.jpg",
   },
   // 25
   {
     text: "OH NO!!! You froze to death during the night..... underestimating temperature drops is no joke.... you died....",
-    buttonText1: "Play again?",
+    buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
@@ -293,11 +294,32 @@ const scenes = [
   // 26
   {
     text: "Sad to see you go! Maybe you will get washed up again and make better choices that time :)",
-    buttonText1: "You sure you don't want to play again?",
+    buttonText1: "Play Again?",
     nextSceneButton1: 0,
     image: "assets/images/end.jpg",
   },
 ];
+
+/**
+ * Attach event listeners for buttons and initialize functions that do not rely on game state.
+ */
+function attachEventListeners() {
+  document
+    .getElementById("actionButton1")
+    .addEventListener("click", function () {
+      handleButtonClick(1);
+    });
+  document
+    .getElementById("actionButton2")
+    .addEventListener("click", function () {
+      handleButtonClick(2);
+    });
+  document
+    .getElementById("actionButton3")
+    .addEventListener("click", function () {
+      handleButtonClick(3);
+    });
+}
 
 /**
  * Resets the game to the initial state, including clearing inventory and scene. It's not doing that now, but it's the goal
@@ -391,7 +413,7 @@ function updateScene() {
     button3.style.display = "none";
   }
 
-  // Show "Pick up" button only if items are available in the scene
+  // Show "Pick up" button if items are available in the scene
   const pickupButton = document.getElementById("pickupButton");
   if (scene.items && scene.items.length > 0) {
     pickupButton.style.display = "inline-block";
@@ -475,16 +497,15 @@ function handleButtonClick(buttonNumber) {
   // Check if the button clicked is "Play Again?"
   if (buttonNumber === 1 && scene.buttonText1 === "Play Again?") {
     restartGame();
-    return; // Stop further processing as game is restarted
+    return;
   } else if (buttonNumber === 2 && scene.buttonText2 === "Play Again?") {
     restartGame();
-    return; // Stop further processing as game is restarted
+    return;
   } else if (buttonNumber === 3 && scene.buttonText3 === "Play Again?") {
     restartGame();
-    return; // Stop further processing as game is restarted
+    return;
   }
 
-  // Otherwise, proceed with normal scene navigation
   if (buttonNumber === 1) {
     currentScene = scene.nextSceneButton1;
   } else if (buttonNumber === 2 && scene.nextSceneButton2 !== undefined) {
@@ -496,17 +517,6 @@ function handleButtonClick(buttonNumber) {
   saveGameState(); // Save the updated current scene
   updateScene();
 }
-
-// Attach event listeners for the main action buttons
-document.getElementById("actionButton1").addEventListener("click", function () {
-  handleButtonClick(1);
-});
-document.getElementById("actionButton2").addEventListener("click", function () {
-  handleButtonClick(2);
-});
-document.getElementById("actionButton3").addEventListener("click", function () {
-  handleButtonClick(3);
-});
 
 // Load the saved game state on page load
 loadGameState();
