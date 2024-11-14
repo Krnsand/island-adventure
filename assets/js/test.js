@@ -5,7 +5,6 @@ window.addEventListener("DOMContentLoaded", main);
  * Calls various setup functions for the game.
  */
 function main() {
-  loadGameState(); // Load saved game state on page load
   updateScene();
   updateInventoryDisplay();
   restartGame();
@@ -151,7 +150,7 @@ const scenes = [
   },
   // 11
   {
-    text: "You see two pretty parrots and think about asking them where you can find some food. The monkey could talk, so why not the parrots too, right...?",
+    text: "You see two pretty parrots and ask them where you can find some food. The monkey could talk, so the parrots should too, right...?",
     buttonText1: "Parrot 1 says left",
     buttonText2: "Parrot 2 says right",
     buttonText3: "I'll just eat the parrots...",
@@ -173,7 +172,7 @@ const scenes = [
   },
   // 13
   {
-    text: "You see some coconuts in a tree! NICE! Now you just need to get them..... ",
+    text: "You see some coconuts in a tree! HURRAY! Now you just need to get them..... ",
     buttonText1: "Climb up and get them",
     buttonText2: "Not risking a fall... look for shelter",
     nextSceneButton1: 14,
@@ -193,11 +192,11 @@ const scenes = [
   },
   // 15
   {
-    text: "You now have food and water, time to look for shelter!",
+    text: "You now have food AND water, time to look for shelter!",
     buttonText1: "Head back to beach",
     buttonText2: "Head back to waterfall",
     nextSceneButton1: 18,
-    nextSceneButton2: 20,
+    nextSceneButton2: 19,
     image: "assets/images/jungle.jpg",
   },
   // 16
@@ -239,13 +238,12 @@ const scenes = [
   // 20
   {
     text: "The crab does not want to let you into it's cave! How rude. Maybe you have something pretty to give the crab to buy your way into it's cave.....",
-    buttonText1: "Give pearl to crab",
-    buttonText2: "The pearl is mine!!!!",
+    buttonText1: "Give to crab",
+    buttonText2: "It's mine!!!!",
     nextSceneButton1: 22,
     nextSceneButton2: 23,
     image: "assets/images/crab.jpg",
     showPutDownButton: true,
-    requiredItemToProceed: "pearl", // This scene requires the player to put down the pearl to advance
   },
   // 21
   {
@@ -267,7 +265,7 @@ const scenes = [
   },
   // 23
   {
-    text: "OH NO!!! The crab is SO offended by your greed and selfishness that it CHOMPS off your foot!!!! You bleed out and die......",
+    text: "OH NO!!! The crab is SO offended by your greed and selfishness that turns HUGE and CHOMPS off your foot!!!! You bleed out and die......",
     buttonText1: "Play Again?",
     buttonText2: "No more please....",
     nextSceneButton1: 0,
@@ -276,7 +274,7 @@ const scenes = [
   },
   // 24
   {
-    text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU SURVIVED!!!!! Congratz! ",
+    text: "You have survived the night! And what is that you see on the horizon? A SHIP!!! They are coming to save you! YOU HAVE SURVIVED!!!!! Congratz! ",
     buttonText1: "Play Again?",
     nextSceneButton1: 0,
     image: "assets/images/ship.jpg",
@@ -321,41 +319,12 @@ function attachEventListeners() {
 }
 
 /**
- * Load saved game state from localStorage.
- * If no saved state exists, the game starts from default values.
- */
-function loadGameState() {
-  const savedScene = localStorage.getItem("currentScene");
-  const savedInventory = localStorage.getItem("playerInventory");
-
-  if (savedScene !== null) {
-    currentScene = parseInt(savedScene); // Set saved scene if available
-  }
-
-  if (savedInventory !== null) {
-    inventory = JSON.parse(savedInventory); // Set saved inventory if available
-  }
-}
-
-/**
- * Save the current game state to localStorage.
- */
-function saveGameState() {
-  localStorage.setItem("currentScene", currentScene); // Save the current scene
-  localStorage.setItem("playerInventory", JSON.stringify(inventory)); // Save inventory as a JSON string
-}
-
-/**
  * Resets the game to the initial state, including clearing inventory and scene.
- * Clears localStorage to restart the game.
  */
 function restartGame() {
   // Reset core variables
   currentScene = 0;
   inventory = [];
-
-  // Clear localStorage to reset saved state
-  localStorage.clear();
 
   // Refresh displays to show initial empty state
   updateInventoryDisplay();
@@ -417,15 +386,11 @@ function updateScene() {
   // Show "Pick up" button if items are available in the scene
   const pickupButton = document.getElementById("pickupButton");
   if (scene.items && scene.items.length > 0) {
-    const itemName = scene.items[0]; // Assuming one item per scene for simplicity
     pickupButton.style.display = "inline-block";
-    pickupButton.innerText = `Pick up ${itemName}`; // Update button text with item name
-
     pickupButton.onclick = function () {
-      pickUpItem(itemName); // Pick up the item
-      // scene.items = []; // Clear items after picking up
-      saveGameState(); // Save updated game state
-      updateScene(); // Refresh scene to update button visibility
+      scene.items.forEach((item) => pickUpItem(item));
+      scene.items = []; // Clear items in scene after picking up
+      updateScene(); // Refresh to hide "Pick up" button
     };
   } else {
     pickupButton.style.display = "none";
@@ -433,25 +398,21 @@ function updateScene() {
 
   // Show "Put Down" button if needed
   const putDownButton = document.getElementById("putDownButton");
-  const requiredItem = scene.requiredItemToProceed;
-  const hasRequiredItem = inventory.includes(requiredItem);
-
-  if (requiredItem && hasRequiredItem) {
-    // Show "Put down [item]" button if required item is in inventory
+  if (scene.showPutDownButton && inventory.length > 0) {
     putDownButton.style.display = "inline-block";
-    putDownButton.innerText = `Put down ${requiredItem}`;
-
     putDownButton.onclick = function () {
-      putDownItem(requiredItem); // Put down the required item
-      saveGameState(); // Save updated game state
-
-      // After putting down the item, change the button to "Next Scene"
-      putDownButton.innerText = "Next Scene";
-      putDownButton.onclick = function () {
-        currentScene = scene.nextSceneButton1; // Or use nextSceneButton2 as per your logic
-        saveGameState(); // Save the new scene progress
-        updateScene(); // Load the next scene
-      };
+      const itemToDrop = prompt(
+        `Which item would you like to put down? Your inventory: ${inventory.join(
+          ", "
+        )}`
+      );
+      if (itemToDrop && inventory.includes(itemToDrop)) {
+        dropItem(itemToDrop);
+        scene.items.push(itemToDrop); // Place the item in the scene
+        updateScene();
+      } else {
+        alert("Item not found in inventory.");
+      }
     };
   } else {
     putDownButton.style.display = "none";
