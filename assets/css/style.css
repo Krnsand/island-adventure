@@ -88,7 +88,7 @@ main {
 }
 
 .fade-in-image { 
-  animation: fadeIn 1s; 
+  animation: fadeIn 1.5s; 
 }
 
 @keyframes fadeIn {
