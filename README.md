@@ -10,4 +10,4 @@ Island Adventure är ett litet överlevnadsspel som är satt på en öde ö där
 
 ### Unfixed Bugs
 
-Jag har inte lyckats få local storage att sparas vid reload och inte heller att inventory töms vid restart, samt att “pick up items” knapparna inte dyker upp vid en restart, man måste göra en hard reload av sidan för att det ska funka igen……
+Jag har inte gjort så att spelaren inte kan gå vidare ifall man inte plockar upp saker/sätter ner saker, det är inte nödvändigtvis en bugg men det hade varit bra att fixa i framtiden
