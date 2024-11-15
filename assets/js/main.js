@@ -227,7 +227,7 @@ const scenes = [
     buttonText2: "I'll just eat the crab....",
     nextSceneButton1: 20,
     nextSceneButton2: 21,
-    image: "assets/images/small-crab.png",
+    image: "assets/images/little-crab.png",
   },
   // 19
   {
@@ -273,7 +273,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/big-crab.png",
+    image: "assets/images/bigg-crab.png",
   },
   // 24
   {
@@ -322,17 +322,14 @@ function attachEventListeners() {
 }
 
 /**
- * Resets the game to the initial state, including clearing inventory and scene. It's not doing that now, but it's the goal
+ * Resets the game to the initial state, including clearing inventory and scene.
  */
 function restartGame() {
-  // Reset core variables
   currentScene = 0;
   inventory = [];
 
-  // Clear saved data in local storage
   removeGameState();
 
-  // Refresh displays to show initial empty state
   updateInventoryDisplay();
   updateScene();
 
@@ -388,12 +385,11 @@ function loadGameState() {
 function updateScene() {
   const scene = scenes[currentScene];
   const sceneImage = document.getElementById("sceneImage");
-  const sceneImageContainer = sceneImage.parentNode; // Förälderelementet med klassen fade-in-image
+  const sceneImageContainer = sceneImage.parentNode;
 
-  // Ta bort klassen för fade-in för att återställa animationen
+  // Remove class for fade-in to reset animation on images
   sceneImageContainer.classList.remove("fade-in-image");
 
-  // Gör en liten fördröjning för att säkerställa att klassen verkligen tas bort
   setTimeout(() => {
     // Update scene text and image
     document.getElementById("sceneText").innerText = scene.text;
@@ -407,12 +403,12 @@ function updateScene() {
       sceneImage.style.width = scene.size.width;
       sceneImage.style.height = scene.size.height;
     } else {
-      sceneImage.style.width = "100%"; // or any default size you want
+      sceneImage.style.width = "100%";
       sceneImage.style.height = "auto";
     }
-    // Lägg till klassen igen för att trigga fade-in-animationen
+    // Add class again to trigger fade-in animation
     sceneImageContainer.classList.add("fade-in-image");
-  }, 10); // 10 ms fördröjning för att säkerställa att borttagningen registreras
+  }, 10);
 
   // Update button 1 (primary button)
   document.getElementById("actionButton1").innerText = scene.buttonText1;
@@ -438,15 +434,14 @@ function updateScene() {
   // Show "Pick up" button if items are available in the scene
   const pickupButton = document.getElementById("pickupButton");
   if (scene.items && scene.items.length > 0) {
-    const itemName = scene.items[0]; // Assuming one item per scene for simplicity
+    const itemName = scene.items[0];
     pickupButton.style.display = "inline-block";
-    pickupButton.innerText = `Pick up ${itemName}`; // Update button text with item name
+    pickupButton.innerText = `Pick up ${itemName}`;
 
     pickupButton.onclick = function () {
-      pickUpItem(itemName); // Pick up the item
-      // scene.items = []; // Clear items after picking up
-      saveGameState(); // Save updated game state
-      updateScene(); // Refresh scene to update button visibility
+      pickUpItem(itemName);
+      saveGameState();
+      updateScene();
     };
   } else {
     pickupButton.style.display = "none";
@@ -464,8 +459,8 @@ function updateScene() {
       );
       if (itemToDrop && inventory.includes(itemToDrop)) {
         dropItem(itemToDrop);
-        scene.items.push(itemToDrop); // Place the item in the scene
-        // saveGameState(); // Save updated game state
+        scene.items.push(itemToDrop);
+        saveGameState();
         updateScene();
       } else {
         alert("Item not found in inventory.");
@@ -539,7 +534,7 @@ function handleButtonClick(buttonNumber) {
     currentScene = scene.nextSceneButton3;
   }
 
-  saveGameState(); // Save the updated current scene
+  saveGameState();
   updateScene();
 }
 
@@ -547,7 +542,12 @@ function handleButtonClick(buttonNumber) {
 loadGameState();
 updateScene();
 
-// Function to set the current year
+/**
+ * This function retrieves the element with the ID "year" and sets its text
+ * content to the current year, based on the system's date.
+ *
+ * @function
+ */
 function updateYear() {
   const yearElement = document.getElementById("year");
   const currentYear = new Date().getFullYear();
