@@ -339,7 +339,7 @@ function updateScene() {
   const sceneImage = document.getElementById("sceneImage");
   const sceneImageContainer = sceneImage.parentNode;
 
-  // Ta bort klassen för fade-in för att återställa animationen
+  // Remove fade-in class to reset animation
   sceneImageContainer.classList.remove("fade-in-image");
 
   setTimeout(() => {
