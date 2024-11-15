@@ -8,7 +8,6 @@ function main() {
   loadGameState();
   updateScene();
   updateInventoryDisplay();
-  restartGame();
   removeGameState();
   saveGameState();
   pickUpItem();
