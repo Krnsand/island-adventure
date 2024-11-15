@@ -218,7 +218,7 @@ const scenes = [
     buttonText2: "No more please....",
     nextSceneButton1: 0,
     nextSceneButton2: 26,
-    image: "assets/images/fall.jpg",
+    image: "assets/images/fall.png",
   },
   // 18
   {
