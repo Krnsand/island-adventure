@@ -10,8 +10,8 @@ function main() {
   updateInventoryDisplay();
   removeGameState();
   saveGameState();
-  pickUpItem();
-  dropItem();
+  // pickUpItem();
+  // dropItem();
   handleButtonClick();
   attachEventListeners();
   updateYear();
